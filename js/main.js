@@ -4,16 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
 	const carousSlide = document.querySelector('.carousel-slide');
 	let carousCards = document.querySelectorAll('.carousel-container .card-container');	
 	let size = carousCards[0].scrollWidth;
-	let lastCard = carousSlide.lastElementChild;
-	let lastClone = lastCard.cloneNode(true);
-
-	carousSlide.prepend(lastClone);
-	carousSlide.style.transform = 'translateX(-' + size + 'px)';
+	let lastCardClone = carousSlide.lastElementChild.cloneNode(true);
+	let firstCardClone = carousSlide.firstElementChild.cloneNode(true);
+	carousSlide.prepend(lastCardClone);
+	carousSlide.append(firstCardClone);
+	carousSlide.style.transform = 'translateX(-' + (size * 1.77) + 'px)';
 
 	//previous click
 	prevArrow.addEventListener('click', () => {
 		carousSlide.style.transition = 'transform .2s ease-in-out';
-		carousSlide.style.transform = 'translateX(0px)';			
+		carousSlide.style.transform = 'translateX(-' + (size - (size/4.3)) + 'px';	
 	})
 
 	//next click  
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		carousCards = document.querySelectorAll('.carousel-container .card-container');
 		size = carousCards[0].scrollWidth;
 		carousSlide.style.transition = 'left .2s ease-in-out';
-		carousSlide.style.left = '-'+ size + 'px';
+		carousSlide.style.left = '-' + (size - 10)  + 'px';
 
 	})
 
@@ -30,29 +30,27 @@ document.addEventListener('DOMContentLoaded', () => {
 		if(e.propertyName === 'transform') {
 			lastCard = carousSlide.lastElementChild;
 			carousSlide.style.transition = 'none';
-			lastCard.remove()
+			lastCard.remove();
 			lastCard = carousSlide.lastElementChild;
-			lastCardClone = lastCard.cloneNode(true);
-			carousSlide.prepend(lastCardClone);
-			carousSlide.style.transform = 'translateX(-' + size + 'px)';
+			oneBeforeLastClone = lastCard.previousElementSibling.cloneNode(true);
+			carousSlide.prepend(oneBeforeLastClone);
+			carousSlide.style.transform = 'translateX(-' + (size*2 - (size/4.3)) + 'px';
 		} 
 		// if user pressed next arrow
 		else if(e.propertyName === 'left') {
 			carousSlide.style.transition = 'none';
 			firstCard = carousSlide.firstElementChild;
-			if(firstCard.isEqualNode(carousSlide.lastElementChild)) {
-				firstCard.remove()
-			}
-			firstCard = carousSlide.firstElementChild;
-			firstCardClone = firstCard.cloneNode(true);
-			carousSlide.append(firstCardClone);
+			firstCard.remove()
+			secondCard = carousSlide.firstElementChild.nextElementSibling;
+			secondCardClone = secondCard.cloneNode(true);
+			carousSlide.append(secondCardClone);
 			carousSlide.style.left = '0px';
 
 		}
 	});
 
 	//accordion
-	
+
 	let accordionOptions = document.getElementsByClassName('accordion-header');
 	[].forEach.call(accordionOptions, function(option,index){
 	    option.onclick = function() {
