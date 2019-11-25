@@ -106,6 +106,7 @@ main {
 	.carousel-controls {
 		margin: 59px 45px 100px;
 		position: relative;
+		display: flex;
 		z-index: 100;
 		.carousel-nav {
 			cursor: pointer;
@@ -113,10 +114,6 @@ main {
 			transition: transform .2s;
 			&:first-child {
 				margin-right: 50px;
-			}
-
-			&:hover {
-				transform: scale(1.1);
 			}
 		}
 	}
@@ -191,7 +188,7 @@ main {
 	}
 
 	h2 {
-		font-size: 3rem;
+		font-size: 2.7rem;
 	}
 
 	main {
@@ -211,23 +208,28 @@ main {
 		.carousel-container {
 			.carousel-slide {
 				.card-container {
-					min-width: 275px;
-					
+					min-width: 195px;
+					max-width: 200px;
+					margin-right: 10px;
 					.card-text {
-						padding: 32px 30px 68px;;
+						padding: 25px 20px 30px;
+
+						p {
+							font-size: 1.5rem;
+						}
 					}
 				}
 			}
 		}
 
 		.carousel-controls {
-			display: flex;
 			justify-content: center;
+			margin: 59px auto 100px;
 			.carousel-nav {
-				max-width: 110px;
+				max-width: 100px;
 
 				&:first-child {
-					margin-right: 10px;
+					margin-right: 20px;
 				}
 			}
 		}
@@ -248,7 +250,7 @@ main {
 		padding-bottom: 150px;
 		.carousel-container {
 			.card-container {
-				min-width: 340px;
+				min-width: 295px;
 			}
 		}
 
@@ -269,6 +271,10 @@ main {
 				}	
 			}
 		}
+
+		.carousel-controls {
+			justify-content: center;
+		}
 	}
 	
 }
@@ -283,6 +289,15 @@ main {
 		.carousel-container {
 			.card-container {
 				min-width: 390px;
+			}
+		}
+
+		.carousel-controls {
+			margin: 59px 0 100px 128px;
+			.carousel-nav {
+				&:hover {
+					transform: scale(1.1);
+				}
 			}
 		}
 	}
